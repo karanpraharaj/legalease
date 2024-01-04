@@ -1,4 +1,4 @@
-# LegalEase
+# Reveal Notes
 
 
 ## Goal

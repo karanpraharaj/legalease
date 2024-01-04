@@ -6,7 +6,6 @@ The proposed project for the hackathon is a verbal note-taker. The goal is to st
 
 **Commit guidelines** have been provided in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
-
 ## Workflow (tentative and subject to change ofc)
 * Implement voice recognition input for attorneys to verbalize notes at review/tagging time. Speech input is easier than written input, so why not?
 * Transcribe spoken observations for compatibility with data science models and integration with key documents.

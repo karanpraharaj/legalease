@@ -2,7 +2,7 @@
 
 
 ## Goal
-The proposed project for the hackathon is a verbal note-taker. The goal is to stitch together a high-accuracy voice recognition with high-fidelity summarization to streamline e-discovery processes for attorneys. The two main components we intend on using are Whisper in C++ (for fast speech transcription), GPT-4 turbo (especially for the JSON mode), and Flask for web app integration.
+The proposed project for the hackathon is a verbal note-taker. The goal is to stitch together a high-accuracy voice recognition with high-fidelity summarization to streamline e-discovery processes for attorneys. The two main components we intend on using are Whisper in C++ (for fast speech transcription), GPT-4 turbo (especially for the JSON mode), and Flask for web app integration. (Heroku for deployment perhaps, but this is not critical.)
 
 ## Workflow (tentative and subject to change ofc)
 * Implement voice recognition input for attorneys to verbalize notes at review/tagging time. Speech input is easier than written input, so why not?

@@ -1,4 +1,4 @@
-# Reveal Notes
+# Project LegalEase
 
 
 ## Goal

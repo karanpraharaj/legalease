@@ -25,5 +25,21 @@ This text was transcribed from the audio of the pitch:
 > And our user, with the help of this feature, should be able to quickly turn a blank page into a strong, editable, first draft with this factual narrative that we have generated. 
 > And that's the long and short of it.
 
+
+#### Planning stuff
+
+For the hackathon, a proof of concept of the AI capabilities will be great but if we can also give a POC of a path to production (e.g. containerization of Whisper and deployment as a Heroku app or something, idk), that would be a great sell.
+
+We can decide the scope and complexity as we go based on how hard we find the project overall and how many people we end up taking on in the team.
+
+* Figure out a way to record audio at 16 kHz and bit depth of 16. Preferred format is .wav.
+* Check if ffmpeg works well with Python. This could also help with input conversion to the required format (above).
+* Find if there is a way whisper can be built with Apple CoreML support. If Whisper's encoder can be executed on Apple Silicon for audio encoding speed up, we will get a big speedup.
+* Should we run the Whisper transcription in a docker container? That way we can run it as a service in K8s. (Get Nick's advice on this later)
+* Check if Gradio has microphone support. Will not matter if a UI person joins team, because we will probably write the frontend in React then. Not a React fan but a UI written in the same framework as R11 should make our work a stronger POC. Gradio can be our insurance plan.
+* Run tests to compare quantized model with more parameters v/s unquantized model with fewer parameters. What is the performance v/s speed tradeoff?
+* Live-streamed realtime transcriptions: The "realtime" part of this makes it extremely hard. Seems almost impossible but it would be INSANE if we can do it.
+* For Karan: read [Whisper](https://cdn.openai.com/papers/whisper.pdf) paper properly.
+
 ## References
 - [Whisper: Robust Speech Recognition via Large-Scale Weak Supervision](https://cdn.openai.com/papers/whisper.pdf)

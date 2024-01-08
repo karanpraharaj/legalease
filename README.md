@@ -26,7 +26,7 @@ This text was transcribed from the audio of the pitch:
 > And that's the long and short of it.
 
 
-#### Planning stuff
+## Planning stuff
 
 For the hackathon, a proof of concept of the AI capabilities will be great but if we can also give a POC of a path to production (e.g. containerization of Whisper and deployment as a Heroku app or something, idk), that would be a great sell.
 

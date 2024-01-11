@@ -21,6 +21,7 @@ Note: The second method also uses Poetry but all the installation steps, includi
 
 #### Prerequisites
 - Python 3.10
+- ffmpeg
 
 To build revealai-voice, follow these steps:
 

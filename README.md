@@ -12,13 +12,16 @@ The proposed project for the hackathon is a verbal note-taker. The goal is to st
 
 ## Building the Project
 There are two ways to build and run the project:
-1. [Using Poetry](#poetry-manual) (manual)
+1. [Using Poetry](#poetry-manual)
 2. [Using Docker](#using-docker) (in progress)
+
+Note: The second method also uses Poetry but all the installation steps, including for python and poetry, are abstracted away by Docker.
+
+### Poetry (manual)
 
 #### Prerequisites
 - Python 3.10
 
-#### Building the project
 To build revealai-voice, follow these steps:
 
 1. Clone the repository to your local machine using the following command:

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "revealai-legalease"
+name = "legalease"
 version = "0.1.0"
 description = ""
 authors = ["karanpraharaj <karanpraharaj@hotmail.com>"]

@@ -23,15 +23,15 @@ Note: The second method also uses Poetry but all the installation steps, includi
 - Python 3.10
 - ffmpeg
 
-To build revealai-voice, follow these steps:
+To build `legalease`, follow these steps:
 
 1. Clone the repository to your local machine using the following command:
     ```
-    git clone https://github.com/purediscovery/revealai-voice.git
+    git clone https://github.com/karanpraharaj/legalease.git
     ```
 
 2. Navigate to the root directory of the cloned repository:
-    `cd revealai-voice`
+    `cd legalease`
 
 3. Install poetry:
 

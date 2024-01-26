@@ -7,3 +7,6 @@
 
 # IntelliJ Directories
 .idea/
+
+# poetry stuff
+.lock

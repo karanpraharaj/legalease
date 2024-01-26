@@ -9,4 +9,5 @@
 .idea/
 
 # poetry stuff
-.lock
+poetry.lock
+

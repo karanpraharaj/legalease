@@ -72,3 +72,4 @@ To build `legalease`, follow these steps:
 To start the service, run:
     ```poetry run start```.
 
+

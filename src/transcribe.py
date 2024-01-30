@@ -1,7 +1,7 @@
 
 import os
 from rich.progress import Progress, TimeElapsedColumn, BarColumn, TextColumn, SpinnerColumn
-from utils import parse_console_log
+from src.parse_utils import parse_console_log
 import argparse
 import os
 import logging

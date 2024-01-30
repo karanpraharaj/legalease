@@ -11,11 +11,12 @@ from server.frameworks.serializers import api_token
 ns = api.namespace('transcription', description='Operations related to audio transcription')
 
 
-@ns.route('/create')
+@ns.route('/')
 class TranscriptionBatchSubmit(Resource):
 
     @api.response(200, 'Transcription request created', api_token)
     @api.response(400, 'Not accepted/parameters not supported')
+    @api.marshal_with(api_token)
     def post(self):
         """
         Create a new batch for processing.
@@ -27,25 +28,18 @@ class TranscriptionBatchSubmit(Resource):
         return return_json, 200
 
 
-@ns.route('/information')
+@ns.route('/<string:token>')
+@ns.param('token', 'The transcription token')
 class TranscriptionInformation(Resource):
 
-    @api.response(200, 'Information returned', api_token)
-    @api.response(404, 'Batch not found in storage')
-    @api.expect(api_token)
-    @api.marshal_with(api_token)
-    def post(self):
+    @ns.doc('get_transcription_information')
+    @ns.marshal_with(api_token)
+    def get(self, token):
         """
         Get information on a batch.
         """
-        token = request.json['guid']
         logging.info(f"Transcription token information: {token}")
         return_json = {
             'guid': token,
         }
         return return_json, 200
-        # if batch_document is not None:
-        #     batch_document['guid'] = batch_document['_id']
-        #     return batch_document, 200
-        # else:
-        #     return '', 404

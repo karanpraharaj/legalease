@@ -2,27 +2,10 @@ import os
 
 from paste.translogger import TransLogger
 from waitress import serve
-from logging.config import dictConfig
 from flask import Flask, Blueprint
 
-from endpoints.transcription import ns as transcription_namespace
-from frameworks.api import api
-
-dictConfig({
-    'version': 1,
-    'formatters': {'default': {
-        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-    }},
-    'handlers': {'wsgi': {
-        'class': 'logging.StreamHandler',
-        'stream': 'ext://flask.logging.wsgi_errors_stream',
-        'formatter': 'default'
-    }},
-    'root': {
-        'level': 'INFO',
-        'handlers': ['wsgi']
-    }
-})
+from server.frameworks.api import api
+from server.endpoints.transcription import ns as transcription_namespace
 
 app = Flask(__name__)
 
@@ -33,11 +16,6 @@ def version():
 
 
 def initialize_app(flask_app):
-    flask_app.config['SWAGGER_UI_DOC_EXPANSION'] = 'list'
-    flask_app.config['RESTPLUS_VALIDATE'] = True
-    flask_app.config['RESTPLUS_MASK_SWAGGER'] = False
-    flask_app.config['ERROR_404_HELP'] = False
-
     blueprint = Blueprint('Endpoints', __name__, url_prefix='/api')
     api.init_app(blueprint)
     api.add_namespace(transcription_namespace)

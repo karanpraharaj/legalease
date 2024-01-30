@@ -11,3 +11,5 @@
 # poetry stuff
 poetry.lock
 
+# logs
+logs/

@@ -13,3 +13,6 @@ poetry.lock
 
 # logs
 logs/
+
+# env
+*.env

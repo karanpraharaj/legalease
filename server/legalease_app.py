@@ -1,3 +1,5 @@
+import os
+
 from paste.translogger import TransLogger
 from waitress import serve
 from logging.config import dictConfig
@@ -46,7 +48,9 @@ initialize_app(app)
 
 
 def main():
-    serve(TransLogger(app), host='0.0.0.0', port='8080')
+    host = os.getenv('API_HOST', '0.0.0.0')
+    port = os.getenv('API_PORT', '8080')
+    serve(TransLogger(app), host=host, port=port)
 
 
 if __name__ == '__main__':

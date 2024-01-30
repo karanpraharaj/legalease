@@ -26,7 +26,7 @@ Document view here ^ryIzEhqN
 {
 	"type": "excalidraw",
 	"version": 2,
-	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.0.17",
+	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.0.18",
 	"elements": [
 		{
 			"type": "ellipse",
@@ -184,8 +184,8 @@ Document view here ^ryIzEhqN
 		},
 		{
 			"type": "arrow",
-			"version": 112,
-			"versionNonce": 595848650,
+			"version": 116,
+			"versionNonce": 2116958459,
 			"isDeleted": false,
 			"id": "nXUrBWlJZdFKFDMdfkwaI",
 			"fillStyle": "solid",
@@ -207,7 +207,7 @@ Document view here ^ryIzEhqN
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1705010308145,
+			"updated": 1706539274975,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -428,8 +428,8 @@ Document view here ^ryIzEhqN
 		},
 		{
 			"type": "arrow",
-			"version": 23,
-			"versionNonce": 721533130,
+			"version": 27,
+			"versionNonce": 1718117243,
 			"isDeleted": false,
 			"id": "_8bktPsF_48DztwBH45NP",
 			"fillStyle": "solid",
@@ -451,7 +451,7 @@ Document view here ^ryIzEhqN
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1705010308146,
+			"updated": 1706539274977,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -480,8 +480,8 @@ Document view here ^ryIzEhqN
 		},
 		{
 			"type": "arrow",
-			"version": 44,
-			"versionNonce": 2076312522,
+			"version": 48,
+			"versionNonce": 486100475,
 			"isDeleted": false,
 			"id": "ovYzGiLl--GdRvlY6VgEm",
 			"fillStyle": "solid",
@@ -503,7 +503,7 @@ Document view here ^ryIzEhqN
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1705010308146,
+			"updated": 1706539274979,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -532,8 +532,8 @@ Document view here ^ryIzEhqN
 		},
 		{
 			"type": "arrow",
-			"version": 460,
-			"versionNonce": 1689721162,
+			"version": 462,
+			"versionNonce": 1683245883,
 			"isDeleted": false,
 			"id": "yXvqv5cC-442WrSUTj0bz",
 			"fillStyle": "solid",
@@ -543,11 +543,11 @@ Document view here ^ryIzEhqN
 			"opacity": 100,
 			"angle": 0,
 			"x": 462.8600511288615,
-			"y": -220.4477136256732,
+			"y": -220.45331807147892,
 			"strokeColor": "#1e1e1e",
 			"backgroundColor": "transparent",
 			"width": 115.59895865886915,
-			"height": 5.822187371567168,
+			"height": 5.822933433713473,
 			"seed": 1291813315,
 			"groupIds": [],
 			"frameId": null,
@@ -555,7 +555,7 @@ Document view here ^ryIzEhqN
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1705010308147,
+			"updated": 1706539274979,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -578,7 +578,7 @@ Document view here ^ryIzEhqN
 				],
 				[
 					115.59895865886915,
-					5.822187371567168
+					5.822933433713473
 				]
 			]
 		},
@@ -758,8 +758,8 @@ Document view here ^ryIzEhqN
 		},
 		{
 			"type": "text",
-			"version": 24,
-			"versionNonce": 1268229770,
+			"version": 26,
+			"versionNonce": 1619064955,
 			"isDeleted": false,
 			"id": "YFI1c6Kj",
 			"fillStyle": "solid",
@@ -779,7 +779,7 @@ Document view here ^ryIzEhqN
 			"frameId": null,
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1705010628619,
+			"updated": 1706546901217,
 			"link": null,
 			"locked": false,
 			"fontSize": 52.275138899685025,
@@ -863,35 +863,6 @@ Document view here ^ryIzEhqN
 			"originalText": "Document view here",
 			"lineHeight": 1.25,
 			"baseline": 18
-		},
-		{
-			"id": "DPtyew6TzIgzPu_c0bhDW",
-			"type": "ellipse",
-			"x": 18.773384098663087,
-			"y": 97.26544758505474,
-			"width": 265.0178431202577,
-			"height": 299.4809126741925,
-			"angle": 0,
-			"strokeColor": "#1971c2",
-			"backgroundColor": "transparent",
-			"fillStyle": "solid",
-			"strokeWidth": 2,
-			"strokeStyle": "solid",
-			"roughness": 1,
-			"opacity": 100,
-			"groupIds": [],
-			"frameId": null,
-			"roundness": {
-				"type": 2
-			},
-			"seed": 1977180170,
-			"version": 12,
-			"versionNonce": 1381773258,
-			"isDeleted": true,
-			"boundElements": null,
-			"updated": 1705010324424,
-			"link": null,
-			"locked": false
 		}
 	],
 	"appState": {
@@ -909,7 +880,7 @@ Document view here ^ryIzEhqN
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 509.6814273916717,
+		"scrollX": -459.2954251989581,
 		"scrollY": 946.3557939240977,
 		"zoom": {
 			"value": 0.4324148702621461

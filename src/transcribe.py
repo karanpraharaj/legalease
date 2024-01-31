@@ -1,9 +1,10 @@
-
 import os
-from rich.progress import Progress, TimeElapsedColumn, BarColumn, TextColumn, SpinnerColumn
-from src.parse_utils import parse_console_log
 import argparse
 import logging
+import subprocess
+import traceback
+
+from src.parse_utils import parse_console_log
 
 
 def return_arguments():
@@ -18,60 +19,52 @@ def return_arguments():
     return parser.parse_args()
 
 
-def run_transcribe(models_path, audios_path, audio_filename, model_name="ggml-base.bin", image_name="test-4"):
-    # Log the arguments
-    # Log the date and time
-    import datetime
+def get_app_root():
+    return os.getenv("APP_ROOT", "/app")
 
-    transcribe_command = "./main -m /models/{model_name} -f /audios/{audio_filename}"
-    
-    logging.info(f"Date and time: {datetime.datetime.now()}", stack_info=False)
-    logging.info(f"models_path: {models_path}")
-    logging.info(f"audios_path: {audios_path}")
-    logging.info(f"audio_filename: {audio_filename}")
-    logging.info(f"model_name: {model_name}")
-    logging.info(f"image_name: {image_name}")
-    logging.info("Transcription started.\n")
 
-    with Progress(
-        TextColumn("[progress.description]{task.description}"),
-        SpinnerColumn(),
-        BarColumn(style="sea_green1", pulse_style="cyan"),
-        TimeElapsedColumn(),
-    ) as progress:
-        progress.add_task("[dark_orange]LEGALEASE: [gold1]Transcribing...", total=None)
-    # Collect the output in a string
-        try:
-            console_log = os.popen(transcribe_command).read()
+def get_transcription_executable_path() -> str:
+    app_root = get_app_root()
+    return os.path.join(app_root, "components/whisper.cpp/main")
 
-            # If transcription is empty, raise an error
-            if "error: failed to read" in console_log:
-                logging.error("File not found. Transcription failed. ❌")
-                exit(1)
-            
-        except Exception as e:
-            logging.error("There was an error while executing the docker run command.")
-            logging.error(e)
-            exit(1)
 
-    
+def get_models_root_path() -> str:
+    app_root = get_app_root()
+    return os.path.join(app_root, "components/whisper.cpp/models")
+
+
+def run_transcribe(audio_filepath, model_name="ggml-base.en.bin"):
+
+    logging.info(f'Running transcription on {audio_filepath} using model {model_name}...')
+
+    whisper_main_path = get_transcription_executable_path()
+    model_path = os.path.join(get_models_root_path(), model_name)
+
+    command = [whisper_main_path, '-m', model_path, '-f', audio_filepath]
+
+    logging.info(f"Running command: {command}")
     try:
-        transcription = parse_console_log(console_log)
+        proc = subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     except Exception as e:
-        logging.error("There was an error while parsing the console log. ❌")
-        exit(1)
-    
-    logging.info("Transcription parsed successfully ✅ \n")
+        logging.error("There was an error while executing the whisper.cpp command.")
+        logging.error(traceback.format_exc())
+        raise e
+
+    command_output = proc.stdout.decode('utf-8')
+
+    transcription = parse_console_log(command_output)
+
+    logging.info("Transcription parsed successfully.")
     logging.info(f"Transcription: {transcription}")
-    
+
     return transcription
 
 
 if __name__ == "__main__":
     args = return_arguments()
     try:
-        transcription = run_transcribe(models_path=args.models_path, audios_path=args.audios_path, audio_filename=args.audio_filename, model_name=args.model_name, image_name=args.image_name)
-        print(transcription)
+        transcription_result = run_transcribe(audio_filepath=args.audio_filename, model_name=args.model_name)
+        print(transcription_result)
     except Exception as e:
         exit(1)
     

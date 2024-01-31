@@ -1,5 +1,6 @@
 import re
 
+
 def parse_console_log(text):
     # Pattern to match the custom timestamp and text
     pattern = r"\[(\d{2}:\d{2}:\d{2}\.\d{3}) --> (\d{2}:\d{2}:\d{2}\.\d{3})\]\s*(.*)"

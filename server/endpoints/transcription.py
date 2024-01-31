@@ -34,7 +34,6 @@ class TranscriptionSubmit(Resource):
 
         transcription = run_transcribe(
             audio_filepath=stored_filepath,
-            model_name="ggml-base.bin",
         )
 
         return_json = {

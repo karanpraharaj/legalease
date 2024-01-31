@@ -19,15 +19,21 @@ def return_arguments():
     return parser.parse_args()
 
 
+def get_app_root():
+    return os.getenv("APP_ROOT", "/app")
+
+
 def get_transcription_executable_path() -> str:
-    return os.getenv("TRANSCRIPTION_EXECUTABLE_PATH", os.path.join(os.getcwd(), "components/whisper.cpp/main"))
+    app_root = get_app_root()
+    return os.path.join(app_root, "components/whisper.cpp/main")
 
 
 def get_models_root_path() -> str:
-    return os.getenv("MODELS_ROOT_PATH", '/models/')
+    app_root = get_app_root()
+    return os.path.join(app_root, "components/whisper.cpp/models")
 
 
-def run_transcribe(audio_filepath, model_name="ggml-base.bin"):
+def run_transcribe(audio_filepath, model_name="ggml-base.en.bin"):
 
     logging.info(f'Running transcription on {audio_filepath} using model {model_name}...')
 

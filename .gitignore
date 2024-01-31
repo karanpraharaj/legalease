@@ -19,3 +19,6 @@ logs/
 
 # pycache
 __pycache__/
+
+# audio upload directory
+uploads/

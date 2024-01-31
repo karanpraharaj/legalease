@@ -23,12 +23,7 @@ def run_transcribe(models_path, audios_path, audio_filename, model_name="ggml-ba
     # Log the date and time
     import datetime
 
-    docker_command = f'''
-    docker run -it --rm \
-    -v {models_path}:/models \
-    -v {audios_path}:/audios \
-    {image_name} "./main -m /models/{model_name} -f /audios/{audio_filename}"
-    '''
+    transcribe_command = "./main -m /models/{model_name} -f /audios/{audio_filename}"
     
     logging.info(f"Date and time: {datetime.datetime.now()}", stack_info=False)
     logging.info(f"models_path: {models_path}")
@@ -47,7 +42,7 @@ def run_transcribe(models_path, audios_path, audio_filename, model_name="ggml-ba
         progress.add_task("[dark_orange]LEGALEASE: [gold1]Transcribing...", total=None)
     # Collect the output in a string
         try:
-            console_log = os.popen(docker_command).read()
+            console_log = os.popen(transcribe_command).read()
 
             # If transcription is empty, raise an error
             if "error: failed to read" in console_log:

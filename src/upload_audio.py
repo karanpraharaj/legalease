@@ -28,6 +28,8 @@ def store_audio_file(audio_file) -> str:
     storage_filename = f'{str(uuid.uuid4())}{input_filename_extension}'
     storage_filepath = os.path.join(upload_folder, storage_filename)
 
+    logging.info(f"Storing file: {storage_filepath}")
+
     audio_file.save(storage_filepath)
 
     if input_filename_extension == ".mp3":
@@ -35,8 +37,9 @@ def store_audio_file(audio_file) -> str:
         converted_filename = f'{str(uuid.uuid4())}.wav'
         converted_filepath = os.path.join(upload_folder, converted_filename)
         command = ["ffmpeg", "-y", "-i", storage_filepath, "-ar", "16000", "-ac", "1", "-c:a", "pcm_s16le", converted_filepath]
-        logging.info(f"File converted to WAV: {converted_filepath}. File upload complete.")
+        logging.info(f"Running command: {command}")
         subprocess.run(command, check=True)
+        logging.info(f"File converted to WAV: {converted_filepath}. File upload complete.")
         return converted_filepath
     else:
         logging.info("File upload complete. No conversion required.")

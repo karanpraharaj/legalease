@@ -26,7 +26,7 @@ def upload_audio():
 @app.route("/transcribe", methods=['POST'])
 def transcribe():
     model_name = request
-    transcription = run_transcribe(models_path="./components/whisper.cpp/models", audios_path="./components/whisper.cpp/samples", audio_filename="demo.wav", model_name="ggml-base.bin", image_name="test-4")
+    transcription = run_transcribe(audio_filepath="demo.wav", model_name="ggml-base.bin")
     return transcription
 
 @app.route("/summarize", methods=['POST'])

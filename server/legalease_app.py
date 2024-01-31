@@ -28,7 +28,8 @@ initialize_app(app)
 def main():
     host = os.getenv('API_HOST', '0.0.0.0')
     port = os.getenv('API_PORT', '8080')
-    serve(TransLogger(app), host=host, port=port)
+    # serve(TransLogger(app), host=host, port=port)
+    app.run(host=host, port=port, debug=True)
 
 
 if __name__ == '__main__':

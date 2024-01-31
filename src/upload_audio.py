@@ -1,33 +1,43 @@
 import os
+import logging
+import uuid
+import subprocess
 from werkzeug.utils import secure_filename
 
 ALLOWED_EXTENSIONS = {'wav', 'mp3'}
 
-def _allowed_file(filename):
+
+def get_upload_folder():
+    upload_folder = os.getenv("UPLOAD_FOLDER", "/tmp/uploads")
+    os.makedirs(upload_folder, exist_ok=True)
+    return upload_folder
+
+
+def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def run_upload_audio(audio_file, upload_folder):
-    if not os.path.exists(upload_folder):
-        os.makedirs(upload_folder)
-        
-    # If the user does not select a file, the browser submits an
-    # empty file without a filename.
-    if audio_file.filename == '':
-        return "No selected file"
-    
-    if audio_file and _allowed_file(audio_file.filename):
-        filename = secure_filename(audio_file.filename)
-        file_path = os.path.join(upload_folder, filename)
-        audio_file.save(file_path)
-        file_format = file_path.split(".")[-1]
-        if file_format == "mp3":
-            convert = "Converting mp3 to wav...\n"
-            os.system(f"ffmpeg -y -i {file_path} -ar 16000 -ac 1 -c:a pcm_s16le {file_path[:-4]}.wav")
-            return f"File converted to WAV: {file_path[:-4]}.wav. File upload complete. "
 
-        else:
-            return f"File upload complete. No conversion required."
+def store_audio_file(audio_file) -> str:
+    input_filename = secure_filename(audio_file.filename)
+
+    # Includes the dot
+    input_filename_extension = os.path.splitext(input_filename)[1].lower()
+
+    upload_folder = get_upload_folder()
+    storage_filename = f'{str(uuid.uuid4())}{input_filename_extension}'
+    storage_filepath = os.path.join(upload_folder, storage_filename)
+
+    audio_file.save(storage_filepath)
+
+    if input_filename_extension == ".mp3":
+        logging.info("Converting mp3 to wav...")
+        converted_filename = f'{str(uuid.uuid4())}.wav'
+        converted_filepath = os.path.join(upload_folder, converted_filename)
+        command = ["ffmpeg", "-y", "-i", storage_filepath, "-ar", "16000", "-ac", "1", "-c:a", "pcm_s16le", converted_filepath]
+        logging.info(f"File converted to WAV: {converted_filepath}. File upload complete.")
+        subprocess.run(command, check=True)
+        return converted_filepath
     else:
-        return "File type not allowed"
-    
+        logging.info("File upload complete. No conversion required.")
+        return storage_filepath

@@ -1,7 +1,7 @@
 from flask import Flask, request
 from src.transcribe import run_transcribe
 from src.summarize import generate_summary
-from src.upload_audio import run_upload_audio
+from src.upload_audio import store_audio_file
 import os
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def upload_audio():
         return "No file part"
     file = request.files['file']
     
-    return run_upload_audio(file, UPLOAD_FOLDER)
+    return store_audio_file(file, UPLOAD_FOLDER)
 
 @app.route("/transcribe", methods=['POST'])
 def transcribe():

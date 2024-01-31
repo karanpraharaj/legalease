@@ -1,6 +1,7 @@
 from flask import Flask, request
 from src.transcribe import run_transcribe
 from src.summarize import generate_summary
+from src.classify import generate_classification
 from src.upload_audio import store_audio_file
 import os
 
@@ -37,7 +38,10 @@ def summarize():
 
 @app.route("/classify", methods=['POST'])
 def classify():
-    return '{"classification": "✅", "confidence": 0.78, "rationale": "This document indicates potential fraud owing to Arthur Andersen\'s accounting irregularities and negligence in detecting and reporting falsifications."}'
+    text = request.json['text']
+    topic_statement = request.json['topic_statement']
+    classification = generate_classification(text, topic_statement)
+    return classification
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)

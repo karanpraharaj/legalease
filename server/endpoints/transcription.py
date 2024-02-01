@@ -22,6 +22,7 @@ class TranscriptionSubmit(Resource):
         """
         args = upload_parser.parse_args()
         uploaded_file = args['file']  # This is FileStorage instance
+        model = args['model']
         # If the user does not select a file, the browser submits an
         # empty file without a filename.
         if uploaded_file.filename == '':
@@ -34,6 +35,7 @@ class TranscriptionSubmit(Resource):
 
         transcription = run_transcribe(
             audio_filepath=stored_filepath,
+            model_name=model
         )
 
         return_json = {

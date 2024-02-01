@@ -38,6 +38,7 @@ classification_obj = api.model('Classification Text', {
 # https://flask-restx.readthedocs.io/en/latest/parsing.html#file-upload
 upload_parser = api.parser()
 upload_parser.add_argument('file', location='files', type=FileStorage, required=True, help='Audio file to be transcribed.')
+upload_parser.add_argument('model', type=str, required=False, help='Model to be used for transcription.', default='ggml-base.en.bin')
 
 summarization_input_parser = api.parser()
 summarization_input_parser.add_argument('review_findings', type=str, required=True, help='Text to be summarized.')

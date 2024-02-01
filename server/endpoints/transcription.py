@@ -9,7 +9,7 @@ from src.transcribe import run_transcribe
 ts_ns = api.namespace('transcription', description='Operations related to audio transcription')
 
 
-@ns.route('/')
+@ts_ns.route('/')
 class TranscriptionSubmit(Resource):
 
     @api.response(200, 'Transcription request created', transcription_text)

@@ -24,8 +24,9 @@ def run_summarize(text, instructions=None, model="gpt-4-0125-preview"):
 
     return completion.choices[0].message.content
 
-final = run_summarize("Arthur Andersen, once a reputed accounting firm, played a significant role in the Enron scandal. They were responsible for auditing Enron's financial statements and failed to report major accounting irregularities. Andersen's negligence in detecting and reporting these falsifications contributed significantly to the concealment of Enron's financial troubles. This oversight not only undermined the integrity of financial reporting but also led to the firm's own downfall and loss of reputation.", "Answer in 4 bullet points.")
-print(final)
+if __name__ == '__main__':
+    final = run_summarize("Arthur Andersen, once a reputed accounting firm, played a significant role in the Enron scandal. They were responsible for auditing Enron's financial statements and failed to report major accounting irregularities. Andersen's negligence in detecting and reporting these falsifications contributed significantly to the concealment of Enron's financial troubles. This oversight not only undermined the integrity of financial reporting but also led to the firm's own downfall and loss of reputation.", "Answer in 4 bullet points.")
+    print(final)
 
 # Sample input
 

@@ -5,10 +5,10 @@ from server.frameworks.serializers import summarization_text, summarization_inpu
 
 from src.summarize import run_summarize
 
-ns = api.namespace('summarization', description='Operations related to summarization of review findings')
+sum_ns = api.namespace('summarization', description='Operations related to summarization of review findings')
 
 
-@ns.route('/')
+@sum_ns.route('/')
 class TranscriptionSubmit(Resource):
 
     @api.response(200, 'Summarization request created', summarization_text)

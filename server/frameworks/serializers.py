@@ -20,3 +20,7 @@ transcription_text = api.model('Transcription Text', {
 # https://flask-restx.readthedocs.io/en/latest/parsing.html#file-upload
 upload_parser = api.parser()
 upload_parser.add_argument('file', location='files', type=FileStorage, required=True, help='Audio file to be transcribed.')
+
+summarization_input_parser = api.parser()
+summarization_input_parser.add_argument('review_findings', type=str, required=True, help='Text to be summarized.')
+summarization_input_parser.add_argument('instructions', type=str, required=False, help='Instructions for summarization.')

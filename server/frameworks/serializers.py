@@ -23,7 +23,7 @@ summarization_text = api.model('Summarization Text', {
                           example='This is a summary.'),
 })
 
-classification_text = api.model('Classification Text', {
+classification_obj = api.model('Classification Text', {
     'decision': fields.String(required=True,
                                 description='Classification decision.',
                                 example='This is a classification.'),

@@ -6,7 +6,7 @@ from server.frameworks.serializers import transcription_text, upload_parser
 from src.upload_audio import store_audio_file, allowed_file
 from src.transcribe import run_transcribe
 
-ns = api.namespace('transcription', description='Operations related to audio transcription')
+ts_ns = api.namespace('transcription', description='Operations related to audio transcription')
 
 
 @ns.route('/')

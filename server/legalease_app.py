@@ -8,7 +8,8 @@ from flask.logging import default_handler
 from flask_cors import CORS
 
 from server.frameworks.api import api
-from server.endpoints.transcription import ns as transcription_namespace
+from server.endpoints.transcription import ts_ns as transcription_namespace
+from server.endpoints.summarization import sum_ns as summarization_namespace
 
 app = Flask(__name__)
 
@@ -24,6 +25,7 @@ def initialize_app(flask_app):
     blueprint = Blueprint('Endpoints', __name__, url_prefix='/api')
     api.init_app(blueprint)
     api.add_namespace(transcription_namespace)
+    api.add_namespace(summarization_namespace)
     flask_app.register_blueprint(blueprint)
 
 

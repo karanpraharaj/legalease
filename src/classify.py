@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from components.gpt4.client import instantiate_client
+import ast
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -9,7 +10,7 @@ load_dotenv(dotenv_path=env_file_path)
 
 client = instantiate_client(os.getenv("OPENAI_API_KEY"))
 
-def generate_classification(text, topic_statement, model="gpt-4-1106-preview"):
+def run_classify(text, topic_statement, model="gpt-4-1106-preview"):
     PROMPT = f'''You are an e-discovery subject matter expert. 
 Your task is to read the following email and determine from its contents whether it is related to the provided topic.
 Email: {text}
@@ -30,8 +31,17 @@ Do not include ```json``` or any other peripheral text in your response.
         ]
     )
 
+    answer = completion.choices[0].message.content
+
+    # Convert to JSON
+    try:
+        response_dict = ast.literal_eval(answer)
+    except Exception as e:
+        print("Error parsing JSON")
+        return f"Error parsing JSON: {str(e)}
+
     return completion.choices[0].message.content
 
 if __name__ == "__main__":
-    sample_classification = generate_classification("Arthur Andersen, once a reputed accounting firm, played a significant role in the Enron scandal. They were responsible for auditing Enron's financial statements and failed to report major accounting irregularities. Andersen's negligence in detecting and reporting these falsifications contributed significantly to the concealment of Enron's financial troubles. This oversight not only undermined the integrity of financial reporting but also led to the firm's own downfall and loss of reputation.", "Clown murders")
+    sample_classification = run_classify("Arthur Andersen, once a reputed accounting firm, played a significant role in the Enron scandal. They were responsible for auditing Enron's financial statements and failed to report major accounting irregularities. Andersen's negligence in detecting and reporting these falsifications contributed significantly to the concealment of Enron's financial troubles. This oversight not only undermined the integrity of financial reporting but also led to the firm's own downfall and loss of reputation.", "Clown murders")
     print(sample_classification)

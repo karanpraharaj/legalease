@@ -9,7 +9,7 @@ load_dotenv(dotenv_path=env_file_path)
 
 client = instantiate_client(os.getenv("OPENAI_API_KEY"))
 
-def generate_summary(text, instructions=None, model="gpt-4-0125-preview"):
+def run_summarize(text, instructions=None, model="gpt-4-0125-preview"):
     if instructions is None:
         instructions = ""
     prompt = f"Instructions: You are an e-discovery assistant, skilled in summarizing observations and findings. I will give you a list of observations and findings from various emails, and you will summarize them in bullet points. \n\nFindings: {text} \n\nSummary for trial presentation:"
@@ -24,7 +24,7 @@ def generate_summary(text, instructions=None, model="gpt-4-0125-preview"):
 
     return completion.choices[0].message.content
 
-final = generate_summary("Arthur Andersen, once a reputed accounting firm, played a significant role in the Enron scandal. They were responsible for auditing Enron's financial statements and failed to report major accounting irregularities. Andersen's negligence in detecting and reporting these falsifications contributed significantly to the concealment of Enron's financial troubles. This oversight not only undermined the integrity of financial reporting but also led to the firm's own downfall and loss of reputation.", "Answer in 4 bullet points.")
+final = run_summarize("Arthur Andersen, once a reputed accounting firm, played a significant role in the Enron scandal. They were responsible for auditing Enron's financial statements and failed to report major accounting irregularities. Andersen's negligence in detecting and reporting these falsifications contributed significantly to the concealment of Enron's financial troubles. This oversight not only undermined the integrity of financial reporting but also led to the firm's own downfall and loss of reputation.", "Answer in 4 bullet points.")
 print(final)
 
 # Sample input

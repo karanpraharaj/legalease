@@ -9,7 +9,7 @@ sum_ns = api.namespace('summarization', description='Operations related to summa
 
 
 @sum_ns.route('/')
-class TranscriptionSubmit(Resource):
+class SummarizationSubmit(Resource):
 
     @api.response(200, 'Summarization request created', summarization_text)
     @api.response(400, 'Not accepted/parameters not supported')

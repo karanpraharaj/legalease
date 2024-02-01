@@ -9,7 +9,7 @@ cl_ns = api.namespace('classification', description='Operations related to class
 
 
 @cl_ns.route('/')
-class TranscriptionSubmit(Resource):
+class ClassificationSubmit(Resource):
 
     @api.response(200, 'Classification request created', classification_obj)
     @api.response(400, 'Not accepted/parameters not supported')
